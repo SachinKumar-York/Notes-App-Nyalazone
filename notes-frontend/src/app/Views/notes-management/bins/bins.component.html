@@ -1,0 +1,90 @@
+<div class="wrapper bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark ">
+    <a class="navbar-brand text-light" href="http://localhost:4200/notes-management/note-wrapper">Notes</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#">SignUP with new account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="http://localhost:4200/notes-management/note-wrapper">My Notes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="http://localhost:4200">LogOut</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  
+
+  <div class="container mt-5">
+    <h1>Bin</h1>
+    <div class="row">
+      <div class="col-md-3" *ngFor="let note of bin_notes_data">
+        <div class="card mb-3" [style.border-color]="note.note_color" (click)="openModal(note)">
+          <div class="card-body">
+            <h3 class="card-title">{{ note.note_title }}</h3>
+            <p class="card-text">{{ note.note_desc }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="myBinModal" class="modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="closeModal()">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="editTitle">Title</label>
+              <input type="text" class="form-control" id="editTitle" [(ngModel)]="bin_selected_note.note_title" name="editTitle" disabled>
+            </div>
+            <div class="form-group">
+              <label for="editDesc">Description</label>
+              <textarea class="form-control" id="editDesc" [(ngModel)]="bin_selected_note.note_desc" name="editDesc" disabled></textarea>
+            </div>
+            <div class="form-group">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="openConfirmModal()">Restore Note</button>
+          <button type="button" class="btn btn-default" (click)="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation</h4>
+          <button type="button" class="close" (click)="closeConfirmModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to restore this note?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="changeNoteStatus()">Yes</button>
+          <button type="button" class="btn btn-default" (click)="closeConfirmModal()">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer mt-auto py-3 bg-dark">
+    <div class="container">
+      <span class="text-muted white">© 2024 Copyright: NotesApp.com</span>
+    </div>
+  </footer>
+</div>
