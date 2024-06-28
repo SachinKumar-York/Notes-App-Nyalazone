@@ -1,4 +1,4 @@
-notes-frontend/src/app/env.service.ts
-notes-frontend/src/environments/environment.ts
-notes-backend/config.py
+notes/notes-frontend/src/app/env.service.ts
+notes/notes-frontend/src/environments/environment.ts
+notes/notes-backend/config.py
 
